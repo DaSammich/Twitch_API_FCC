@@ -10,7 +10,7 @@
 <body>
 
 
-Welcome to Twitch API!!!
+Welcome to Twitch API
 
 
 
@@ -21,9 +21,24 @@ Welcome to Twitch API!!!
 
 <script>
 
+var streamers = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
 
 window.onload = function() {
-	console.log('hello');
+	
+	streamers.forEach(function(streamer) {
+		$.getJSON('https://wind-bow.gomix.me/twitch-api/streams/'+streamer+'?callback=?', function(data) {
+			console.log(data);
+		});
+	});
+	
+	console.log("\n");
+	
+	$.getJSON('https://wind-bow.gomix.me/twitch-api/users/noobs2ninjas?callback=?', function (data) {
+		console.log(data);
+	});
+	$.getJSON('https://wind-bow.gomix.me/twitch-api/streams/ESL_SC2?callback=?', function (data) {
+		console.log(data);
+	});
 }
 	
 
