@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script
+	src="https://code.jquery.com/jquery-3.2.1.min.js"
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous">
+</script>
+</head>
+<body>
+
+
+Callback function example
+
+</body>
+
+
+<script>
+
+function A(callback) {
+	console.log('a');
+	callback()
+}
+function B(callback) {
+	console.log('b');
+	callback()
+}
+function C(callback) {
+	console.log('c');
+	callback()
+}
+function D() {
+	console.log('d');
+}
+
+function fork (async_calls, shared_callback) {
+  var counter = async_calls.length;
+  var callback = function () {
+    counter --;
+    if (counter == 0) {
+      shared_callback()
+    }
+  }
+
+  for (var i=0;i<async_calls.length;i++) {
+    async_calls[i](callback);
+  }
+}
+
+function doSomething(callback) {
+	callback('stuff', 'goes', 'here')
+	console.log('this should print first always')
+	callback('stuff', 'goes', 'here')
+}
+
+function foo(a,b,c) {
+	console.log(a+''+b+''+c)
+}
+
+window.onload = function() {
+	//fork([A,B,C],D);
+	doSomething(foo)
+}
+	
+
+</script>
+
+
+
+</html>
